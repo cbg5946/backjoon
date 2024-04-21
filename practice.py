@@ -1,20 +1,23 @@
-def dfs(graph, v, visited):
-    visited[v] = True
-    print(v, end=' ')
-    
-    for i in graph[v]:
-        if not visited[i]:
-            dfs(graph, i, visited)
-            
-graph = [[],
-         [2, 3, 8],
-         [1, 7],
-         [1, 4, 5],
-         [3, 5],
-         [3, 4],
-         [7],
-         [2, 6, 8],
-         [1, 7]]
+n = int(input())
+arr = list(map(int, input().split()))    
+lastIdx = len(arr) - 1
+c = 0
+swapped  = True
+i = 0
+while swapped: 
+    swapped = False
+    for j in range(i, lastIdx-i):
+        if arr[j] > arr[j+1]:
+            arr[j], arr[j+1] = arr[j+1], arr[j]
+            c += 1
+            swapped = True
 
-visited = [False]*9
-dfs(graph, 1, visited)
+    if swapped:
+        for j in range(lastIdx-i, i, -1):
+            if arr[j-1] > arr[j]:
+                arr[j-1], arr[j] = arr[j], arr[j-1]
+                c += 1
+                swapped = True
+    
+    i = i + 1
+print(c)
