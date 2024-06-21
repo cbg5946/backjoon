@@ -1,5 +1,9 @@
-a = [[1, 2],[2, 3]]
+from collections import deque
 
-a[0][0] = a[0][0]+1
+def bfs(i, j):
+    q = deque()
+    q.append((i, j))
+    x, y = q.popleft()
+    print(x, y)
 
-print(a)
+bfs(1, 1)
